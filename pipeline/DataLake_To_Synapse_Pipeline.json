@@ -1,0 +1,41 @@
+{
+	"name": "DataLake_To_Synapse_Pipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "Data flow1",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "DataLake_To_Synapse",
+						"type": "DataFlowReference"
+					},
+					"staging": {
+						"linkedService": {
+							"referenceName": "Gen2_Link_Service",
+							"type": "LinkedServiceReference"
+						},
+						"folderPath": "adlsnycpayroll-lam-n/dirstaging"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2023-10-22T17:57:22Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
